@@ -17,3 +17,6 @@ node_modules
 
 # Ignore arquivos de configuração de SASS
 .sass-cache
+
+#ignore arquivos padrao intelliJ
+.idea

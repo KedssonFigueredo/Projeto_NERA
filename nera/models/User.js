@@ -18,6 +18,6 @@ const Usuario = db.sequelize.define('usuario', {
 }, { freezeTableName: true });
 
 
-// Post.sync({force: true});
+//Usuario.sync({force: true});
 
 module.exports = Usuario;

@@ -2,7 +2,7 @@ const db = require('./db');
 
 // criando a tabela postangens
 
-const professor = db.sequelize.define('professor', {
+const Professor = db.sequelize.define('professor', {
     id_professor: { type: db.Sequelize.INTEGER, 
     autoIncrement: true, 
     allowNull: false, 
@@ -17,5 +17,5 @@ const professor = db.sequelize.define('professor', {
         foringKey: true },
 }, { freezeTableName: true });
 
-// Post.sync({force: true});
+//Professor.sync({force: true});
 module.exports = Usuario;
