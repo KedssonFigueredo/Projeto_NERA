@@ -1,3 +1,4 @@
+
 //Configs padrões
 const express = require("express");
 const session = require("express-session");
@@ -5,8 +6,7 @@ const app = express();
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const User = require('./models/User');
-const { and } = require("sequelize");
-
+const Questao = require('./models/questao');
 
 //Configs da sessão
 app.use(session({
@@ -43,16 +43,20 @@ app.get('/log-aluno', function (req, res) {
     res.render('formLogin_Aluno', { layout : 'mainLogin' });
 });
 
-//rota para tela de perfil
-app.get('/tela-perfil', function (req, res) {
-    res.render('telaPerfil');
+//rota para tela de trilha
+app.get('/tela-trilha', function (req, res) {
+    res.render('trilha');
+});
+
+app.get('/trilha-topicos', function (req, res) {
+    res.render('trilha_topicos');
 });
 
 app.get('/cad', function (req, res) {
     res.render('formCadastro', {layout : 'mainLogin'});
 });
 
-// procurando usuario e senha no banco
+// procurando usuario e senha no banco criando 
 app.post('/login', function (req, res) {
 
     User.findOne({
@@ -62,9 +66,11 @@ app.post('/login', function (req, res) {
         }
     }).then(function (result) {
         if (result) {
-            req.session.login = result.email;
+            req.session.login = result.id_usuario;
             console.log(req.session.login);
-            res.render('home')
+            result = result.toJSON();
+            console.log(result);
+            res.render('telaPerfil', {user: result})
         } else {
             res.render('formulario')
         }
@@ -73,8 +79,6 @@ app.post('/login', function (req, res) {
 });
 
 app.post('/cadastro', function (req, res) {
-
-    if(req.body.senha_cad == req.body.confirmar_senha_cad){
     User.create({
         email: req.body.email_cad,
         senha: req.body.senha_cad
@@ -86,12 +90,28 @@ app.post('/cadastro', function (req, res) {
         catch(function (erro) {
             res.send('"Houve um erro: ' + erro);
         });
-    }else{
-        res.send("verifique se as senhas estao iguais")
-    }
+});
+
+
+//rotas de questao
+//buscando questao no banco
+app.get('/questao', function (req, res) {
+    Questao.findOne({
+        where: {
+            id_questao: 1
+        }
+    }).then(function (result) {
+        result = result.toJSON();
+        console.log(result);
+        res.render('questao', {questao: result})
+    }).catch((erro) => {
+        res.send('Houve um erro: ' + erro);
+    }); 
 });
 
 
 app.listen(8081, function () {
     console.log("Servidor rodando");
 });
+
+
