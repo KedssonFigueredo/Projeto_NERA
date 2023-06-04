@@ -35,7 +35,7 @@ select:focus {
     flex-direction: row;
     background-color: #F2B705;
     width: 410px;
-    height: 593px;
+    height: 130px;
     border-radius: 30px;
 }
 
@@ -569,10 +569,9 @@ select:focus {
 }
 
 .card:nth-child(odd) {
-    background: linear-gradient(#fbd52d, #ef3a71);
+    background: #F20574;
 }
 
 .card:nth-child(even) {
-
-    background: linear-gradient(#f5f4f3, #4d1022);
+    background: #F2B705;
 }
