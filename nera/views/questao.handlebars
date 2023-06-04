@@ -1,9 +1,30 @@
-<div>
-<h1>{{questao.enunciado}}</h1>
-<section class="grid grid-template-columns-1">
-	<div class="item"><a href="/">{{questao.alternativa1}}</a></div>
-	<div class="item">{{questao.alternativa2}}</div>
-	<div class="item">{{questao.alternativa3}}</div>
-	<div class="item">{{questao.alternativa4}}</div>
+<div class="content-questao">
+<section class="section-questao">
+<h1>1-{{questao.enunciado}}</h1>
+<img src="/img/1.svg" alt="">	
 </section>
+<section class="container">
+		<div class="btn"><button onclick="verificar('{{questao.alternativa1}}')">{{questao.alternativa1}}</button> </div>
+		<div class="btn"><a href="#" >{{questao.alternativa2}}</a></div>
+		<div class="btn"><a href="#" >{{questao.alternativa3}}</a></div>
+		<div class="btn"><a href="#" >{{questao.alternativa4}}</a></div>
+		<p id="certa" hidden>{{questao.alternativa_correta}}</p>	
+</section>
+<section class="container">
+		<a name="reloar" href=""><img src="/img/atualizar.png" alt="" ></a>
+		<a name="dica" href="#" ><img src="/img/ideia.png" alt="" ></a>
+		<a name="next" href="#" ><img src="/img/next.png" alt="" ></a>
+</section>
+<script>
+	function verificar(alternativa){
+		const certa = document.getElementById("certa")
+		const button = document.getElementById(alternativa)
+		console.log(certa)
+		if(certa === alternativa){
+			button.style.background = "green"
+		}else{
+			button = "red"
+		}
+	}
+</script>
 </div>
