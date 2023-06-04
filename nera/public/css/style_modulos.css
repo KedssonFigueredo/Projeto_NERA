@@ -1,0 +1,19 @@
+.div_modulo_fracao {
+    position: relative;
+    display: flex;
+    height: auto;
+    width: 100%;
+}
+
+.img_frac_modulo {
+    width: 150px;
+    height: 150px;
+}
+
+.img_icone_modulo {
+    position: absolute;
+    width: 140px;
+    height: 150px;
+    left: 70%;
+    top: 70%;
+}
