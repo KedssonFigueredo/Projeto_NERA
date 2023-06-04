@@ -48,8 +48,8 @@ app.get('/tela-trilha', function (req, res) {
     res.render('trilha');
 });
 
-app.get('/trilha-topicos', function (req, res) {
-    res.render('trilha_topicos');
+app.get('/trilha-modulos', function (req, res) {
+    res.render('trilha_modulos');
 });
 
 // rota para tela-perfil
@@ -87,6 +87,7 @@ app.post('/login', function (req, res) {
 });
 
 app.post('/cadastro', function (req, res) {
+    if(req.body.senha_cad && req.body.email_cad != null && req.body.senha_cad == req.body.confirmar_senha_cad){
     User.create({
         email: req.body.email_cad,
         senha: req.body.senha_cad
@@ -98,8 +99,10 @@ app.post('/cadastro', function (req, res) {
         catch(function (erro) {
             res.send('"Houve um erro: ' + erro);
         });
+    }else{
+        res.send("verifique se as senhas estao iguais")
+    }
 });
-
 
 //rotas de questao
 //buscando questao no banco
