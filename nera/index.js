@@ -121,6 +121,22 @@ app.get('/questao', function (req, res) {
 });
 
 
+
+
+//verificar alternativa certa
+app.get('/verificar', function (req, res){
+    Questao.findOne({
+        where: {
+            id_questao: 1
+        }
+    }).then(function(questao){
+        questao = questao.toJSON();
+        console.log(questao.alternativa_correta)
+    })
+
+})
+
+
 app.listen(8081, function () {
     console.log("Servidor rodando");
 });
