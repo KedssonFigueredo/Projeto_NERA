@@ -52,6 +52,14 @@ app.get('/trilha-topicos', function (req, res) {
     res.render('trilha_topicos');
 });
 
+// rota para tela-perfil
+app.get('/tela-perfil', function (req, res) {
+    if(req.session.user == null){
+        res.redirect('/log-aluno')
+    }else{
+    res.render('telaPerfil', {user: req.session.user})}
+});
+
 app.get('/cad', function (req, res) {
     res.render('formCadastro', {layout : 'mainLogin'});
 });
@@ -66,13 +74,13 @@ app.post('/login', function (req, res) {
         }
     }).then(function (result) {
         if (result) {
-            req.session.login = result.id_usuario;
-            console.log(req.session.login);
-            result = result.toJSON();
-            console.log(result);
-            res.render('telaPerfil', {user: result})
+            req.session.user = result
+            console.log( req.session.user);
+            req.session.user = result.toJSON();
+            console.log(req.session.user);
+            res.render('telaPerfil', {user: req.session.user})
         } else {
-            res.render('formulario')
+            res.render('/log-aluno')
         }
 
     });
