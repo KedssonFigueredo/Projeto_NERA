@@ -1,5 +1,6 @@
 
 //Configs padrões
+const port = process.env.PORT || 3000
 const express = require("express");
 const session = require("express-session");
 const app = express();
@@ -137,7 +138,7 @@ app.get('/verificar', function (req, res){
 })
 
 
-app.listen(8081, function () {
+app.listen(port, function () {
     console.log("Servidor rodando");
 });
 
